@@ -1,0 +1,18 @@
+{% extends "entries/base.html" %}
+
+{% block title %}{% if entry %}Izmeni "{{ entry.title }}"{% else %}Dodaj novi unos{% endif %} | {{ block.super }}{% endblock title %}
+
+{% block content %}
+<form method="POST">
+{% csrf_token %}
+{{ form.as_p }}
+<p>
+<input type="submit" value="OK" />
+{% if entry %}
+<a href="{% url 'entry_detail' entry.id %}"><button>Otkaži</button></a>
+{% else %}
+<a href="{% url 'entry_list' %}"><button>Otkaži</button></a>
+{% endif %}
+</p>
+</form>
+{% endblock content %}

@@ -1,0 +1,17 @@
+{% extends "entries/base.html" %}
+
+{% block content %}
+<div class="new">
+<span class="mark"><em>{% now "d. m. Y. H:i" %}</em></span>
+<span><a href="{% url 'entry_create' %}"><button>⌨ Dodaj novi unos</button></a></span>
+</div>
+<hr />
+{% for entry in entry_list %}
+<article>
+<header>
+<h2 class="{{ entry.date_created|date:'l' }}"><a href="{% url 'entry_detail' entry.id %}">{{ entry.title }}</a></h2>
+</header>
+<p><span class="mark">{{ entry.date_created|date:"d. m. Y. H:i" }}</span> | <a href="{% url 'entry_update' entry.id %}" title="Izmeni {{ entry.title }}"><button>✍ Izmeni</button></a> | <a href="{% url 'entry_delete' entry.id %}" title="Ukloni {{ entry.title }}"><button>☠ Ukloni</button></a></p>
+</article>
+{% endfor %}
+{% endblock %}

@@ -1,0 +1,16 @@
+{% extends "entries/base.html" %}
+
+{% block title %}{{ entry.title }} | {{ block.super }}{% endblock title %}
+
+{% block content %}
+<article>
+<header>
+<h2 class="entry_title">{{ entry.title }}</h2>
+<p>{{ entry.date_created|date:"d. m. Y. H:i" }}</p>
+</header>
+<section>
+{{ entry.content|safe }}
+</section>
+<p><a href="{% url 'entry_update' entry.id %}" title="Izmeni {{ entry.title }}"><button>✍️ Izmeni</button></a> | <a href="{% url 'entry_delete' entry.id %}" title="Ukloni {{ entry.title }}"><button>☠ Ukloni</button></a></p>
+</article>
+{% endblock content %}

@@ -1,0 +1,14 @@
+{% extends "entries/base.html" %}
+
+{% block title %}Ukloni {{ entry.title }}? | {{ block.super }}{% endblock title %}
+
+{% block content %}
+<form method="post">
+{% csrf_token %}
+<p>Da li sigurno želiš da ukloniš <em>"{{ entry.title }}"</em> (kreirano: {{ entry.date_created|date:'d. m. Y.' }})?</p>
+<p>
+<input type="submit" value="Potvrdi" />
+<a href="{% url 'entry_detail' entry.id %}"><button>Otkaži</button></a>
+</p>
+</form>
+{% endblock content %}
